@@ -4,8 +4,8 @@ This plugin repository contains ImageJ plugins and macros developed by
 researchers at the Medical Imaging Laboratory, Hospital General Universitario 
 Gregorio Marañón, Madrid (http://image.hggm.es).
 
-The plugins here presented will be available under the "Plugins > LIM Tools".
-Below you will find a list of each one of them with a brief description.
+The plugins here presented will be available under the "Plugins > LIM Tools"
+menu. Below you will find a list of each one of them with a brief description.
 
 ## Dynamic Pixel Inspector
 

@@ -15,3 +15,8 @@ display a plot of the gray intensity for each voxel through time (x axis)
 as the mouse moves over the image. If the image has the focus and the user
 presses the 'q' key, the plot stops updating in case a screenshot needs to
 be taken. When the 'q' key is pressed again, the live updating resumes.
+
+## Average Frames
+
+Creates a 3D image from a 4D one, averaging the frames selected by the user
+in the dialog that shows up when executed.

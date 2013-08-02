@@ -69,6 +69,9 @@ public class Average_Frames implements PlugInFilter {
             } // end x
         } // end z        
         
+        // Use same calibration for source and target images
+        result.setCalibration(imp.getCalibration());
+        
         result.show();
     }
 

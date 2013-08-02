@@ -38,6 +38,9 @@ public class Average_Frames implements PlugInFilter {
         gd.addChoice("Last frame:", choices, lastframe + "");
         gd.showDialog();
         
+        // If user cancelled, return
+        if (gd.wasCanceled()) return;
+        
         initframe = Integer.parseInt(gd.getNextChoice());
         endframe = Integer.parseInt(gd.getNextChoice());
         

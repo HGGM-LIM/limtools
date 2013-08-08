@@ -26,3 +26,8 @@ be taken. When the 'q' key is pressed again, the live updating resumes.
 Applies a static mask to a dynamic image (with frames). All the pixels that 
 have a 0 value in the mask will be set to 0 in all the frames of the dynamic
 image.
+
+## Measure Time Activity
+
+Shows the mean time-activity values for each frame for the unmasked voxels
+in the current dynamic image.

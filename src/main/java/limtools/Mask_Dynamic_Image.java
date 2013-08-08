@@ -57,7 +57,6 @@ public class Mask_Dynamic_Image implements PlugIn {
         }
         
         // Mask the original image
-        
         ImageStack dyn_stack = dynamic.getStack();
         ImageStack mask_stack = mask.getStack();
         
@@ -65,16 +64,19 @@ public class Mask_Dynamic_Image implements PlugIn {
             for (int x = 0; x < dim_dynamic[0]; x++) {
                 for (int y = 0; y < dim_dynamic[1]; y++) {
                     // Voxel masked?
-                    boolean masked = mask_stack.getVoxel(x, y, slice - 1) == 0;
+                    boolean masked = 
+                            (int) mask_stack.getVoxel(x, y, slice - 1) == 0;
                     
                     if (masked) {
-                        for (int f = 0; f <= dim_dynamic[4]; f++) {
+                        for (int f = 1; f <= dim_dynamic[4]; f++) {
                             int stackindex = dynamic.getStackIndex(1, slice, f);
-                            dyn_stack.setVoxel(x, y, stackindex, 0.0);                            
+                            dyn_stack.setVoxel(x, y, stackindex - 1, 0.0);                            
                         } // end f                        
                     }
                 } // end y
             } // end x
         } // end z
+        
+        dynamic.updateImage();
     } // end run
 }

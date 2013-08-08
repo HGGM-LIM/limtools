@@ -4,6 +4,7 @@ import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
+import ij.measure.Calibration;
 import ij.plugin.filter.PlugInFilter;
 import ij.process.ImageProcessor;
 
@@ -19,7 +20,7 @@ import ij.process.ImageProcessor;
  */
 public class Average_Frames implements PlugInFilter {
     
-    private ImagePlus imp;
+    private ImagePlus imp;    
     private int[] dim;
 
     @Override
@@ -53,7 +54,9 @@ public class Average_Frames implements PlugInFilter {
         
         // Compute the mean frame value and set on the original image
         ImageStack source = imp.getStack();
-        ImageStack target = result.getStack();        
+        ImageStack target = result.getStack();    
+        Calibration cal = imp.getCalibration();
+        result.setCalibration(cal); // FIXME: values are not calibrated        
         double [] values = new double[endframe - initframe + 1];
         
         for (int z = 0; z < dim[3]; z++) {
@@ -61,16 +64,14 @@ public class Average_Frames implements PlugInFilter {
                 for (int y = 0; y < dim[1]; y++) {
                     for (int f = initframe; f <= endframe; f++) {
                         int stackindex = imp.getStackIndex(1, z + 1, f); 
-                        values[f - initframe] = source.getVoxel(x, y, 
-                                                                stackindex - 1);
+                        values[f - initframe] = cal.getCValue(
+                                                 source.getVoxel(x, y, 
+                                                               stackindex - 1));
                     } // end f
-                    target.setVoxel(x, y, z, _mean(values));
+                    target.setVoxel(x, y, z, _mean(values));                    
                 } // end y
             } // end x
         } // end z        
-        
-        // Use same calibration for source and target images
-        result.setCalibration(imp.getCalibration());
         
         result.show();
     }

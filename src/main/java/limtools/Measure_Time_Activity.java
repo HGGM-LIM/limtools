@@ -4,7 +4,9 @@ import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.measure.Calibration;
+import ij.measure.ResultsTable;
 import ij.plugin.PlugIn;
+import ij.plugin.filter.Analyzer;
 
 /**
  * Shows the mean time-activity values for each frame for the unmasked voxels
@@ -72,10 +74,16 @@ public class Measure_Time_Activity implements PlugIn {
             }            
         }
         
-        for (int i = 0; i < tac.length; i++) {
+        // Display the results in a ResultsTable object
+        ResultsTable rt = Analyzer.getResultsTable();
+        for (int i = 0; i < tac.length; i++) {            
             tac[i] /= (double) total;
-            IJ.log(tac[i] + "\n");
-        }        
+            rt.incrementCounter();
+            rt.addValue("Frame", i + 1);
+            rt.addValue("Activity", tac[i]);
+        }  
+        rt.showRowNumbers(false);
+        rt.show("Results");
     }
     
     private double [] _getTAC(int x, int y, int slice) {

@@ -54,8 +54,7 @@ public class Measure_Time_Activity implements PlugIn {
         double [] temp;
         stack = imp.getStack();      
         cal = imp.getCalibration();
-        CALZERO = cal.getCValue(0.0);
-        System.out.println(CALZERO);
+        CALZERO = cal.getCValue(0.0);        
         int total = 0;
         
         
@@ -66,16 +65,13 @@ public class Measure_Time_Activity implements PlugIn {
                     if (!_isMasked(temp)) {
                         total++;
                         for (int i = 0; i < tac.length; i++) {
-                            tac[i] += temp[i];
-                            System.out.print(temp[i] + " ");
-                        }
-                        System.out.println();
+                            tac[i] += temp[i];                        
+                        }                        
                     }
                 }
             }            
         }
         
-        System.out.println(total);
         for (int i = 0; i < tac.length; i++) {
             tac[i] /= (double) total;
             IJ.log(tac[i] + "\n");

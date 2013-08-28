@@ -61,6 +61,8 @@ public class Mask_Dynamic_Image implements PlugIn {
         ImageStack mask_stack = mask.getStack();
         
         for (int slice = 1; slice <= dim_dynamic[3]; slice++) {
+            // Update progress bar
+            IJ.showProgress(slice - 1, dim_dynamic[3]);
             for (int x = 0; x < dim_dynamic[0]; x++) {
                 for (int y = 0; y < dim_dynamic[1]; y++) {
                     // Voxel masked?

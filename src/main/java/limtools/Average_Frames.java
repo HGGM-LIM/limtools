@@ -60,6 +60,8 @@ public class Average_Frames implements PlugInFilter {
         double [] values = new double[endframe - initframe + 1];
         
         for (int z = 0; z < dim[3]; z++) {
+            // Update progress bar indicator
+            IJ.showProgress(z, dim[3]);
             for (int x = 0; x < dim[0]; x++) {
                 for (int y = 0; y < dim[1]; y++) {
                     for (int f = initframe; f <= endframe; f++) {

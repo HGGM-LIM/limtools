@@ -61,6 +61,8 @@ public class Measure_Time_Activity implements PlugIn {
         
         
         for (int slice = 1; slice <= dim[3]; slice++) {
+            // Update progress bar
+            IJ.showProgress(slice - 1, dim[3]);
             for (int x = 0; x < dim[0]; x++) {
                 for (int y = 0; y < dim[1]; y++) {
                     temp = _getTAC(x, y, slice);

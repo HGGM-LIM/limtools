@@ -31,3 +31,9 @@ image.
 
 Shows the mean time-activity values for each frame for the unmasked voxels
 in the current dynamic image.
+
+## Similarity Index
+
+Computes the [Jaccard index](http://en.wikipedia.org/wiki/Jaccard_index)
+and the [Dice coefficient](http://en.wikipedia.org/wiki/Dice%27s_coefficient)
+for two given binary images of the same dimensions.

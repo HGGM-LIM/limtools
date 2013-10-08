@@ -8,6 +8,8 @@ import ij.measure.ResultsTable;
 import ij.plugin.PlugIn;
 import ij.plugin.filter.Analyzer;
 
+import static limtools.Utils.isMasked;
+
 /**
  * Shows the mean time-activity values for each frame for the unmasked voxels
  * in the current dynamic image.
@@ -66,7 +68,7 @@ public class Measure_Time_Activity implements PlugIn {
             for (int x = 0; x < dim[0]; x++) {
                 for (int y = 0; y < dim[1]; y++) {
                     temp = _getTAC(x, y, slice);
-                    if (!_isMasked(temp)) {
+                    if (!isMasked(temp, CALZERO)) {
                         total++;
                         for (int i = 0; i < tac.length; i++) {
                             tac[i] += temp[i];                        
@@ -96,12 +98,4 @@ public class Measure_Time_Activity implements PlugIn {
         }
         return tac;
     }
-    
-    // Test BOTH zero values, just in case the masking has been done differently.
-    private boolean _isMasked(double [] tac) {
-        for (double d : tac)
-            if (d != CALZERO && d != 0.0) return false;                
-        return true;
-    }
-
 }

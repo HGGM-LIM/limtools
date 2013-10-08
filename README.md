@@ -32,6 +32,11 @@ image.
 Shows the mean time-activity values for each frame for the unmasked voxels
 in the current dynamic image.
 
+## Normalize Dynamic
+
+Normalizes each time-activity curve in the image with its corresponding
+maximum value.
+
 ## Similarity Index
 
 Computes the [Jaccard index](http://en.wikipedia.org/wiki/Jaccard_index)

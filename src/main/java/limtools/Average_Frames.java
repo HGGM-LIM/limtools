@@ -5,8 +5,7 @@ import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.measure.Calibration;
-import ij.plugin.filter.PlugInFilter;
-import ij.process.ImageProcessor;
+import ij.plugin.PlugIn;
 
 /**
  * This plugin creates a new image with the same spatial dimensions as the 
@@ -18,13 +17,19 @@ import ij.process.ImageProcessor;
  * @author José María Mateos - jmmateos@hggm.es
  *
  */
-public class Average_Frames implements PlugInFilter {
+public class Average_Frames implements PlugIn {
     
-    private ImagePlus imp;    
-    private int[] dim;
-
     @Override
-    public void run(ImageProcessor arg0) {
+    public void run(String arg0) {
+        
+        ImagePlus imp = IJ.getImage();        
+        int [] dim = imp.getDimensions();
+        
+        // If not a HyperStack, return
+        if (dim[4] < 2) {
+            IJ.error("Not a HyperStack", "This plugin needs a HyperStack");
+            return;
+        }
         
         // Create dialog to obtain the first and last frames for the averaging                
         int lastframe = dim[4], initframe, endframe;     
@@ -78,25 +83,11 @@ public class Average_Frames implements PlugInFilter {
         result.show();
     }
 
-    @Override
-    public int setup(String arg0, ImagePlus imp) {
-        
-        dim = imp.getDimensions();
-        
-        // If not a HyperStack, return
-        if (dim[4] < 2) {
-            IJ.error("Not a HyperStack", "This plugin needs a HyperStack");
-            return DONE;
-        }
-            
-        this.imp = imp;
-        return DOES_16 + DOES_32 + DOES_8G;
-    }
-    
     private double _mean(double [] values) {
         double result = 0.0;
         for (double d : values) result += d;        
         return result / values.length;
     }
+
 
 }

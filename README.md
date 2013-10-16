@@ -21,6 +21,11 @@ as the mouse moves over the image. If the image has the focus and the user
 presses the 'q' key, the plot stops updating in case a screenshot needs to
 be taken. When the 'q' key is pressed again, the live updating resumes.
 
+## Dynamic to Results
+
+Creates a text table with the contents of the dynamic image, one voxel
+per row, with the different frames in columns.
+
 ## Mask Dynamic Image
 
 Applies a static mask to a dynamic image (with frames). All the pixels that 
@@ -36,6 +41,15 @@ in the current dynamic image.
 
 Normalizes each time-activity curve in the image with its corresponding
 maximum value.
+
+## Results to Static
+
+Creates a static image (3D) with the contents of a Results table that contains
+4 columns:
+
+XCoord  YCoord  SliceCoord  Value
+
+The user must provide the correct image dimensions using a dialog.
 
 ## Similarity Index
 

@@ -54,11 +54,12 @@ public class Results_to_Static implements PlugIn {
         
         // We need to ask the user for the image dimensions, as there is no
         // way of guessing them from the coordinate values (the voxels have
-        // probably been masked beforehand)
+        // probably been masked beforehand). In any case, use the maximum
+        // read value for each dimension.
         GenericDialog gd = new GenericDialog("Please set the image dimensions");
-        gd.addNumericField("X", 0, 4);
-        gd.addNumericField("Y", 0, 4);
-        gd.addNumericField("Slices", 0, 4);
+        gd.addNumericField("X", max_x, 0);
+        gd.addNumericField("Y", max_y, 0);
+        gd.addNumericField("Slices", max_slice, 0);
         gd.showDialog();
         
         if (gd.wasCanceled())

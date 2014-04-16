@@ -37,9 +37,9 @@ public class Similarity_Index implements PlugIn {
         for (int i = 0; i < images.length; i++)
             open_images[i] = WindowManager.getImage(images[i]).getTitle();            
         
-        GenericDialog gd = new GenericDialog("Choose dynamic image and mask");
-        gd.addChoice("Dynamic image:", open_images, open_images[0]);
-        gd.addChoice("Mask:", open_images, open_images[1]);
+        GenericDialog gd = new GenericDialog("Choose images");
+        gd.addChoice("Image 1:", open_images, open_images[0]);
+        gd.addChoice("Image 2:", open_images, open_images[1]);
         gd.showDialog();
                 
         // If user canceled, return
